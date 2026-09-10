@@ -67,7 +67,7 @@ const Info = () => {
       e.preventDefault();
 
       try{
-     const response = await axios.post("https://mine-crafted-portfolio-backend.onrender.com/newUser", {
+     const response = await axios.post("https://mine-crafted-portfolio-backend-1.onrender.com/newUser", {
       name: userName,
       email: userEmail,
       contact: userContact,
