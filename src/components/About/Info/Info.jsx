@@ -3,6 +3,7 @@ import axios from "axios";
 import "./Info.scss";
 import Button from "../Button/Button";
 
+
 const infoMeData = {
   one: {
     content: [
@@ -80,7 +81,7 @@ const Info = () => {
      setUserEmail("");
      setUserContact("");
      setUserMessage("");
-
+      
      setSuccessMessage("Message sent successfully!");
 
      setTimeout(() => {
@@ -198,11 +199,22 @@ const Info = () => {
 </Button>
 
 {successMessage && (
-  <p className="success"> {successMessage} </p>
+  <p className="contact-status success"> {successMessage} </p>
 )}
 
 </form>
 </div>
+
+
+  <div className="hover-reveal-container">
+    <p className="info-section-header">🗣 What Clients Say About Me</p>
+    <img
+      className="hover-reveal-image"
+      src="/images/vibecheck.png"
+      alt="Client testimonial"
+    />
+  </div>
+
 
 
         {data.content.map((section, index) => (
