@@ -48,6 +48,24 @@
   margin-bottom: 24px;
 }
 
+.section-paragraph1 {
+
+  margin-top: 8px;
+  margin-bottom: 8px;
+  color: white;
+  margin-bottom: 24px;
+text-align: center;
+}
+
+.info-section-header1 {
+  margin-bottom: 18px;
+  padding: 8px;
+  color: white;
+  background-color: styles.$color-base-dark-gray-two;
+  text-align: center;
+}
+
+
 .yellow-text {
   color: styles.$color-font-primary-yellow;
 }
@@ -160,7 +178,7 @@
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease;
-
+  
   &:hover:not(:disabled) {
     background-color: #e6c200; /* manually use a slightly darker yellow */
   }
@@ -169,6 +187,13 @@
     opacity: 0.7;
     cursor: not-allowed;
   }
+}
+
+.loader{
+  padding-left: 2rem;
+  color: #111;
+  width: 75px;
+  height: 15px;
 }
 
 .contact-status {

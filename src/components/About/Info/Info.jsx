@@ -2,51 +2,18 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Info.scss";
 import Button from "../Button/Button";
+import { SyncLoader } from "react-spinners";
+
 
 
 const infoMeData = {
   one: {
     content: [
       {
-        header: "💭 About this minecraftfolio",
+        header: "COPYRIGHT",
         paragraphs: [
-          "This folio was created just to showcase my creativty and nature towards the world! Click the button above to contact me and hire me to create a portfolio like this from baking textures to custom camera movements!!!",
-        ],
-      },
-      {
-        header: "🎉 Special Thanks, Credits, & Inspiration",
-        paragraphs: [
-          " - A big thanks to *MCprep Blender addon creators*. It saves so much time working with Minecraft-like things in Blender. Would not have been possible otherwise.",
-          " - Special thanks to ❤️*my mom*❤️ for the inspiration for the house design!!!",
-          " - Thank you *JDGraphics*, the Minecraft font is super awesome.",
-          " - Big shoutout to *Andrew Won's three.js journey* course and all the helpers in the Discord channel. If I didn't start my journey with this course, I don't think I'd be where I am now.",
-          " - Shoutout to *Shraddha Mam from Apna College*, learned a lot on the MERN stack app building.",
-          " - Audio was sourced from *myinstants.com, voicemod.net, and downloads.khinsider.com*",
-          " - Amazing mob models all credited to *Vincent Yanez* on Sketchfab!! Thank you for them Vincent!",
-        ],
-      },
-      {
-        header: "🤖 Tools, Technologies, & More",
-        paragraphs: [
-          " - Entire project was spanned over two months, some days I spent 12 hours and some days I spent like 30 minutes, so I don't even remember how long it took me (at least 100 hours), but it was really fun!!!",
-          " - *Blender* was used for all 3D stuff (driver animations, baking, modeling, rigging etc.). Notable plugins include MCprep, SimpleBake, and UVPackMaster 3.",
-          " - *Audacity* was used to convert mp3 files into ogg files for smaller file sizes and retaining quality.",
-          " - *Figma* was used to edit baked textures and create custom SVGs.",
-          " - *Poly Haven* was used for the HDRI.",
-          " - Global state management stores were handled with *zustand*.",
-          " - Vite's default *React template* was used.",
-          " - *SCSS* was the choice for the website styles.",
-          " - *Vercel* was used for deployment and *SquareSpace* for the domain name. Vercel was free which is amazing. Domain name cost 14 USD for one year.",
-          " - React three fiber and lot's of react three drei helpers were used to speed up the 3D web development process.",
-          " - Notable command line tools like *gltf-transform* and *gltfjsx* were used to optimize models for the web and code.",
-          " - All meshes utilized *KTX textures* and were created using KTX Software on GitHub.",
-          " - *Transfonter* was used to convert fonts from otf to woff files.",
-          " - *Favicon generator* was used to convert PNG image to well set up favicons for different devices and browsers.",
-          " - Read a lot of documentation. A lot. I really appreciate all of those who spent so much time on the documentation for their tools it really helps out a ton. The react three drei docs are incredible.",
-          " - *Squoosh* by Google was used for quick image compression and conversion to webp image format.",
-          " - *ChatGPT* helped out with some of the redundant code really well.",
-          " - Online viewers like *sandbox.babylonjs.com*, *gltf-viewer.donmccurdy.com*, and *gltf-report.com* were incredibly helpful for quickly reviewing model animations and textures, saving a lot of time.",
-          " - I'm sure I'm forgetting a lot of things at the moment, but will come back here to update this list. Feel free to reach out to me at *paulrudraprosad1@gmail.com* if you have any questions!",
+          "PRIVACY POLICY || TERMS OF USE",
+          "© 2025 rudrapaulportfolio.vercel.app. All rights reserved."
         ],
       },
     ],
@@ -63,9 +30,13 @@ const Info = () => {
     const [userContact, setUserContact] = useState("");
      const [userMessage, setUserMessage] = useState("");
      const [successMessage, setSuccessMessage] = useState("");
-
+    const [loading, setLoading] = useState(false);
+    const [isSending, setIsSending] = useState(false);
      const handleSubmit = async (e) => {
       e.preventDefault();
+      
+        setLoading(true);
+        setIsSending(true)
 
       try{
      const response = await axios.post("https://mine-crafted-portfolio-backend-1.onrender.com/newUser", {
@@ -82,6 +53,8 @@ const Info = () => {
      setUserContact("");
      setUserMessage("");
       
+     setLoading(false);
+     setIsSending(false);
      setSuccessMessage("Message sent successfully!");
 
      setTimeout(() => {
@@ -194,9 +167,11 @@ const Info = () => {
 </div>
  
 
-<Button className="contact-submit" type="submit">
-  Send Me a Message
+<Button className="contact-submit" type="submit" disabled={isSending}>
+ {isSending ? 'sending' : ' Send Me a Message'}
+  <SyncLoader className="loader"  loading={loading}> </SyncLoader>
 </Button>
+
 
 {successMessage && (
   <p className="contact-status success"> {successMessage} </p>
@@ -205,29 +180,50 @@ const Info = () => {
 </form>
 </div>
 
+<div className="info-section-header">
+  🤖 my freelance work
+  </div>
 
   <div className="hover-reveal-container">
-    <p className="info-section-header">🗣 What Clients Say About Me</p>
+    <p className="info-section-header">Vibecheck- 
+itinerary Platform</p>
     <img
       className="hover-reveal-image"
-      src="/images/vibecheck.png"
+      src="/images/vibecheck.webp"
       alt="Client testimonial"
     />
   </div>
 
+ <div className="hover-reveal-container">
+    <p className="info-section-header">Mindful- Mental health site</p>
+    <img
+      className="hover-reveal-image"
+      src="/images/mindful.webp"
+      alt="Client testimonial"
+    />
+  </div>
 
+ <div className="hover-reveal-container">
+    <p className="info-section-header">Devorbit- Freelance site</p>
+    <img
+      className="hover-reveal-image"
+      src="/images/devorbit.webp"
+      alt="Client testimonial"
+    />
+  </div>
 
-        {data.content.map((section, index) => (
+        
+      </div>
+      {data.content.map((section, index) => (
           <div key={index} className="data-section">
-            <h2 className="info-section-header">{section.header}</h2>
+            <h2 className="info-section-header1">{section.header}</h2>
             {section.paragraphs.map((paragraph, pIndex) => (
-              <p key={`${index}-${pIndex}`} className="section-paragraph">
+              <p key={`${index}-${pIndex}`} className="section-paragraph1">
                 {parseText(paragraph)}
               </p>
             ))}
           </div>
         ))}
-      </div>
     </>
   );
 };
