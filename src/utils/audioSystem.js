@@ -26,6 +26,7 @@ const sounds = {
     src: [resolveAudioPath("/audio/music/Sweden.mp3")],
     loop: true,
     volume: 1.0,
+    html5: true,
   }),
 };
 
