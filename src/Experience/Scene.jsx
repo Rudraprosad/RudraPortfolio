@@ -15,6 +15,13 @@ import GrassBlocks from "./models/GrassBlocksT";
 import GrassSides from "./models/GrassSidesT";
 import Mobs from "./models/MobsT";
 
+const baseUrl = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+const resolveAssetPath = (path) =>
+  path.startsWith("/") ? `${baseUrl}${path.slice(1)}` : path;
+
 const Scene = ({
   cameraGroup,
   camera,
@@ -202,12 +209,12 @@ const Scene = ({
         background={true}
         backgroundRotation={[0, Math.PI / 2, 0]}
         files={[
-          "/cubemap/px.webp",
-          "/cubemap/nx.webp",
-          "/cubemap/py.webp",
-          "/cubemap/ny.webp",
-          "/cubemap/pz.webp",
-          "/cubemap/nz.webp",
+          resolveAssetPath("/cubemap/px.webp"),
+          resolveAssetPath("/cubemap/nx.webp"),
+          resolveAssetPath("/cubemap/py.webp"),
+          resolveAssetPath("/cubemap/ny.webp"),
+          resolveAssetPath("/cubemap/pz.webp"),
+          resolveAssetPath("/cubemap/nz.webp"),
         ]}
       />
       <Suspense fallback={null}>

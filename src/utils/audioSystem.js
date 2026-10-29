@@ -1,22 +1,29 @@
 import { Howl, Howler } from "howler";
 import { useAudioStore } from "../Experience/stores/audioStore";
 
+const baseUrl = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+
+const resolveAudioPath = (path) =>
+  path.startsWith("/") ? `${baseUrl}${path.slice(1)}` : path;
+
 // Create sound instances
 const sounds = {
   buttonClick: new Howl({
-    src: ["/audio/sfx/ButtonClick.mp3"],
+    src: [resolveAudioPath("/audio/sfx/ButtonClick.mp3")],
     volume: 1.0,
   }),
   doorOpening: new Howl({
-    src: ["/audio/sfx/DoorOpening.mp3"],
+    src: [resolveAudioPath("/audio/sfx/DoorOpening.mp3")],
     volume: 0.4,
   }),
   doorClosing: new Howl({
-    src: ["/audio/sfx/DoorClosing.mp3"],
+    src: [resolveAudioPath("/audio/sfx/DoorClosing.mp3")],
     volume: 0.4,
   }),
   backgroundMusic: new Howl({
-    src: ["/audio/music/Sweden.mp3"],
+    src: [resolveAudioPath("/audio/music/Sweden.mp3")],
     loop: true,
     volume: 1.0,
   }),
