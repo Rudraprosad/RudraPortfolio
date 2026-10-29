@@ -47,7 +47,7 @@ export const resumeSound = (soundId) => {
 export const playBackgroundMusic = () => {};
 export const stopBackgroundMusic = () => {};
 export const pauseBackgroundMusic = () => {};
-
+ 
 // Volume controls
 export const setVolume = (soundId, volume) => {
   sounds[soundId]?.volume(volume);
