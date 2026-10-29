@@ -217,18 +217,23 @@ const Scene = ({
           resolveAssetPath("/cubemap/nz.webp"),
         ]}
       />
-      <Suspense fallback={null}>
-        <House />
-        <BackGrass />
-        <Detail progress={scrollProgress} pulseIntensity={pulseIntensity} />
-        <Extras />
-        <ExtrasTwo />
-        <ExtrasThree progress={scrollProgress} />
-        <FrontGrass />
-        <GrassBlocks />
-        <GrassSides />
-        <Mobs progress={scrollProgress} />
-      </Suspense>
+      {/* Primary world (unlocks loading screen quickly) */}
+<Suspense fallback={null}>
+  <House />
+  <FrontGrass />
+  <GrassBlocks />
+  <GrassSides />
+  <Detail progress={scrollProgress} pulseIntensity={pulseIntensity} />
+  
+  {/* Secondary elements (load smoothly in background) */}
+  <Suspense fallback={null}>
+    <BackGrass />
+    <Extras />
+    <ExtrasTwo />
+    <ExtrasThree progress={scrollProgress} />
+    <Mobs progress={scrollProgress} />
+  </Suspense>
+</Suspense>
     </>
   );
 };
