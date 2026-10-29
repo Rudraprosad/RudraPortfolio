@@ -8,7 +8,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/")
 const resolveAudioPath = (path) =>
   path.startsWith("/") ? `${baseUrl}${path.slice(1)}` : path;
 
-// Create sound instances
+// Create sound instances (background music excluded to save bandwidth)
 const sounds = {
   buttonClick: new Howl({
     src: [resolveAudioPath("/audio/sfx/ButtonClick.mp3")],
@@ -21,12 +21,6 @@ const sounds = {
   doorClosing: new Howl({
     src: [resolveAudioPath("/audio/sfx/DoorClosing.mp3")],
     volume: 0.4,
-  }),
-  backgroundMusic: new Howl({
-    src: [resolveAudioPath("/audio/music/Sweden.mp3")],
-    loop: true,
-    volume: 1.0,
-    html5: true,
   }),
 };
 
@@ -49,18 +43,10 @@ export const resumeSound = (soundId) => {
   sounds[soundId]?.play();
 };
 
-// Background music controls
-export const playBackgroundMusic = () => {
-  sounds.backgroundMusic.play();
-};
-
-export const stopBackgroundMusic = () => {
-  sounds.backgroundMusic.stop();
-};
-
-export const pauseBackgroundMusic = () => {
-  sounds.backgroundMusic.pause();
-};
+// Background music controls (no-ops so no components break)
+export const playBackgroundMusic = () => {};
+export const stopBackgroundMusic = () => {};
+export const pauseBackgroundMusic = () => {};
 
 // Volume controls
 export const setVolume = (soundId, volume) => {
