@@ -225,19 +225,11 @@ const Scene = ({
   <GrassBlocks />
   <GrassSides />
   <Detail progress={scrollProgress} pulseIntensity={pulseIntensity} />
-</Suspense>
-
-{/* Secondary models - only starts downloading once the world is entered! */}
-<Suspense fallback={null}>
-  {scrollProgress > 0 && (
-    <>
-      <BackGrass />
+  <BackGrass />
       <Extras />
       <ExtrasTwo />
       <ExtrasThree progress={scrollProgress} />
       <Mobs progress={scrollProgress} />
-    </>
-  )}
 </Suspense>
     </>
   );
