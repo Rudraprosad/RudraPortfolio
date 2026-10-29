@@ -218,21 +218,26 @@ const Scene = ({
         ]}
       />
       {/* Primary world (unlocks loading screen quickly) */}
+{/* Primary models - loads immediately for the loading screen */}
 <Suspense fallback={null}>
   <House />
   <FrontGrass />
   <GrassBlocks />
   <GrassSides />
   <Detail progress={scrollProgress} pulseIntensity={pulseIntensity} />
-  
-  {/* Secondary elements (load smoothly in background) */}
-  <Suspense fallback={null}>
-    <BackGrass />
-    <Extras />
-    <ExtrasTwo />
-    <ExtrasThree progress={scrollProgress} />
-    <Mobs progress={scrollProgress} />
-  </Suspense>
+</Suspense>
+
+{/* Secondary models - only starts downloading once the world is entered! */}
+<Suspense fallback={null}>
+  {scrollProgress > 0 && (
+    <>
+      <BackGrass />
+      <Extras />
+      <ExtrasTwo />
+      <ExtrasThree progress={scrollProgress} />
+      <Mobs progress={scrollProgress} />
+    </>
+  )}
 </Suspense>
     </>
   );
